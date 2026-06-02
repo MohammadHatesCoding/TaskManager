@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project\\TaskManager\\TaskManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}|TaskManager.Business\\TaskManager.Business.csproj|d:\\project\\taskmanager\\taskmanager\\taskmanager.business\\features\\companyfeatures\\commands\\createcompanyrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}|TaskManager.Business\\TaskManager.Business.csproj|solutionrelative:taskmanager.business\\features\\companyfeatures\\commands\\createcompanyrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B049F38-2F18-4F15-A51C-2D2EBF4FB9A0}|TaskManager.Infrastructure\\TaskManager.Infrastructure.csproj|d:\\project\\taskmanager\\taskmanager\\taskmanager.infrastructure\\taskmanager.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4B049F38-2F18-4F15-A51C-2D2EBF4FB9A0}|TaskManager.Infrastructure\\TaskManager.Infrastructure.csproj|solutionrelative:taskmanager.infrastructure\\taskmanager.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CEF4A85-23E8-471F-95DB-83067AA434C1}|TaskManger.Core\\TaskManager.Domain.csproj|d:\\project\\taskmanager\\taskmanager\\taskmanger.core\\taskmanager.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8CEF4A85-23E8-471F-95DB-83067AA434C1}|TaskManger.Core\\TaskManager.Domain.csproj|solutionrelative:taskmanger.core\\taskmanager.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}|TaskManager.Business\\TaskManager.Business.csproj|d:\\project\\taskmanager\\taskmanager\\taskmanager.business\\taskmanager.business.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}|TaskManager.Business\\TaskManager.Business.csproj|solutionrelative:taskmanager.business\\taskmanager.business.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD9CAA9F-2CE0-49BD-B720-4ACC6EF2248B}|TaskManager.Api\\TaskManager.Api.csproj|d:\\project\\taskmanager\\taskmanager\\taskmanager.api\\taskmanager.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FD9CAA9F-2CE0-49BD-B720-4ACC6EF2248B}|TaskManager.Api\\TaskManager.Api.csproj|solutionrelative:taskmanager.api\\taskmanager.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaskManager.Infrastructure",
+              "DocumentMoniker": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Infrastructure\\TaskManager.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "TaskManager.Infrastructure\\TaskManager.Infrastructure.csproj",
+              "ToolTip": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Infrastructure\\TaskManager.Infrastructure.csproj",
+              "RelativeToolTip": "TaskManager.Infrastructure\\TaskManager.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-02T08:31:08.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TaskManager.Domain",
+              "DocumentMoniker": "D:\\Project\\TaskManager\\TaskManager\\TaskManger.Core\\TaskManager.Domain.csproj",
+              "RelativeDocumentMoniker": "TaskManger.Core\\TaskManager.Domain.csproj",
+              "ToolTip": "D:\\Project\\TaskManager\\TaskManager\\TaskManger.Core\\TaskManager.Domain.csproj",
+              "RelativeToolTip": "TaskManger.Core\\TaskManager.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-02T08:31:07.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TaskManager.Business",
+              "DocumentMoniker": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Business\\TaskManager.Business.csproj",
+              "RelativeDocumentMoniker": "TaskManager.Business\\TaskManager.Business.csproj",
+              "ToolTip": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Business\\TaskManager.Business.csproj",
+              "RelativeToolTip": "TaskManager.Business\\TaskManager.Business.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-02T08:17:46.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TaskManager.Api",
+              "DocumentMoniker": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Api\\TaskManager.Api.csproj",
+              "RelativeDocumentMoniker": "TaskManager.Api\\TaskManager.Api.csproj",
+              "ToolTip": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Api\\TaskManager.Api.csproj",
+              "RelativeToolTip": "TaskManager.Api\\TaskManager.Api.csproj",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-02T08:16:41.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CreateCompanyRequest.cs",
+              "DocumentMoniker": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Business\\Features\\CompanyFeatures\\Commands\\CreateCompanyRequest.cs",
+              "RelativeDocumentMoniker": "TaskManager.Business\\Features\\CompanyFeatures\\Commands\\CreateCompanyRequest.cs",
+              "ToolTip": "D:\\Project\\TaskManager\\TaskManager\\TaskManager.Business\\Features\\CompanyFeatures\\Commands\\CreateCompanyRequest.cs",
+              "RelativeToolTip": "TaskManager.Business\\Features\\CompanyFeatures\\Commands\\CreateCompanyRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T08:16:19.88Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

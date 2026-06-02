@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Domain", "TaskManger.Core\TaskManager.Domain.csproj", "{8CEF4A85-23E8-471F-95DB-83067AA434C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Api", "TaskManager.Api\TaskManager.Api.csproj", "{FD9CAA9F-2CE0-49BD-B720-4ACC6EF2248B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Business", "TaskManager.Business\TaskManager.Business.csproj", "{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Infrastructure", "TaskManager.Infrastructure\TaskManager.Infrastructure.csproj", "{4B049F38-2F18-4F15-A51C-2D2EBF4FB9A0}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TaskManager.Shared", "TaskManager.Shared\TaskManager.Shared.shproj", "{56881AC6-D43C-4DD1-94AA-F14D3B039591}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CEF4A85-23E8-471F-95DB-83067AA434C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CEF4A85-23E8-471F-95DB-83067AA434C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CEF4A85-23E8-471F-95DB-83067AA434C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CEF4A85-23E8-471F-95DB-83067AA434C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD9CAA9F-2CE0-49BD-B720-4ACC6EF2248B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD9CAA9F-2CE0-49BD-B720-4ACC6EF2248B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD9CAA9F-2CE0-49BD-B720-4ACC6EF2248B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD9CAA9F-2CE0-49BD-B720-4ACC6EF2248B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED266FA-C0E3-4C7E-9147-91A885AD14DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B049F38-2F18-4F15-A51C-2D2EBF4FB9A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B049F38-2F18-4F15-A51C-2D2EBF4FB9A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B049F38-2F18-4F15-A51C-2D2EBF4FB9A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B049F38-2F18-4F15-A51C-2D2EBF4FB9A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29055AEB-E7B6-42A1-8173-3EA74910927A}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		TaskManager.Shared\TaskManager.Shared.projitems*{2ed266fa-c0e3-4c7e-9147-91a885ad14dd}*SharedItemsImports = 5
+		TaskManager.Shared\TaskManager.Shared.projitems*{4b049f38-2f18-4f15-a51c-2d2ebf4fb9a0}*SharedItemsImports = 5
+		TaskManager.Shared\TaskManager.Shared.projitems*{56881ac6-d43c-4dd1-94aa-f14d3b039591}*SharedItemsImports = 13
+		TaskManager.Shared\TaskManager.Shared.projitems*{8cef4a85-23e8-471f-95db-83067aa434c1}*SharedItemsImports = 5
+		TaskManager.Shared\TaskManager.Shared.projitems*{fd9caa9f-2ce0-49bd-b720-4acc6ef2248b}*SharedItemsImports = 5
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+﻿using TaskManager.Business.Abstraction.Interfaces.Mediator;
+
+namespace TaskManager.Business.Features.AssignmentEmployeeFeatures.Commands;
+
+public record DeleteAssignmentEmployeeCommand(DeleteAssignmentEmployeeRequest command) : IRequest<DeleteAssignmentEmployeeResponse>;

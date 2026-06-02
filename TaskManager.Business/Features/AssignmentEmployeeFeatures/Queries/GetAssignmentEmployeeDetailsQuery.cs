@@ -1,0 +1,5 @@
+﻿using TaskManager.Business.Abstraction.Interfaces.Mediator;
+
+namespace TaskManager.Business.Features.AssignmentEmployeeFeatures.Queries;
+
+public record GetAssignmentEmployeeDetailsQuery(GetAssignmentEmployeeDetailsRequest query) : IRequest<GetAssignmentEmployeeDetailsResponse>;
