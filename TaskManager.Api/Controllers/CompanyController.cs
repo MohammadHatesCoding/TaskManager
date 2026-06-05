@@ -20,7 +20,7 @@ public class CompanyController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
-    public async Task<CreateCompanyResponse> Create([FormFile] CreateCompanyCommand request, CancellationToken cancellationToken)
+    public async Task<CreateCompanyResponse> Create([FromForm] CreateCompanyCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateCompanyResponse>(request, cancellationToken);
 
