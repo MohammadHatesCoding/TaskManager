@@ -1,5 +1,0 @@
-D:\Project\TaskManager\TaskManager\TaskManager.Business\obj\Debug\net8.0\TaskManager.Business.csproj.AssemblyReference.cache
-D:\Project\TaskManager\TaskManager\TaskManager.Business\obj\Debug\net8.0\TaskManager.Business.GeneratedMSBuildEditorConfig.editorconfig
-D:\Project\TaskManager\TaskManager\TaskManager.Business\obj\Debug\net8.0\TaskManager.Business.AssemblyInfoInputs.cache
-D:\Project\TaskManager\TaskManager\TaskManager.Business\obj\Debug\net8.0\TaskManager.Business.AssemblyInfo.cs
-D:\Project\TaskManager\TaskManager\TaskManager.Business\obj\Debug\net8.0\TaskManager.Business.csproj.CoreCompileInputs.cache
