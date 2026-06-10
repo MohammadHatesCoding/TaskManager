@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Api.Controllers.Base;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Features.ProjectEmployeeFeatures.Commands;
@@ -18,6 +19,7 @@ public class ProjectEmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize("SysAdmin")]
     public async Task<CreateProjectEmployeeResponse> Create(CreateProjectEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateProjectEmployeeResponse>(request, cancellationToken);
@@ -30,6 +32,7 @@ public class ProjectEmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
+    [Authorize("SysAdmin")]
     public async Task<UpdateProjectEmployeeResponse> Update(UpdateProjectEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateProjectEmployeeResponse>(request, cancellationToken);
@@ -42,6 +45,7 @@ public class ProjectEmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize("SysAdmin")]
     public async Task<DeleteProjectEmployeeResponse> Delete(DeleteProjectEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteProjectEmployeeResponse>(request, cancellationToken);
@@ -54,6 +58,7 @@ public class ProjectEmployeeController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetAllProjectEmployeesResponse>> GetAll(GetAllProjectEmployeesQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllProjectEmployeesResponse>>(request, cancellationToken);
@@ -65,6 +70,7 @@ public class ProjectEmployeeController : BaseController
     }
     [HttpPost]
     [Route(nameof(GetDetails))]
+    [Authorize("SysAdmin")]
     public async Task<GetProjectEmployeeDetailsResponse> GetDetails(GetProjectEmployeeDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetProjectEmployeeDetailsResponse>(request, cancellationToken);

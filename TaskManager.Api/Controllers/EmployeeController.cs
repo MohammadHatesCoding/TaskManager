@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Api.Controllers.Base;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Features.EmployeeFeatures.Commands;
@@ -18,6 +19,7 @@ public class EmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize("SysAdmin")]
     public async Task<CreateEmployeeResponse> Create(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateEmployeeResponse>(request, cancellationToken);
@@ -30,6 +32,7 @@ public class EmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
+    [Authorize("SysAdmin")]
     public async Task<UpdateEmployeeResponse> Update(UpdateEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateEmployeeResponse>(request, cancellationToken);
@@ -42,6 +45,7 @@ public class EmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize("SysAdmin")]
     public async Task<DeleteEmployeeResponse> Delete(DeleteEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteEmployeeResponse>(request, cancellationToken);
@@ -54,6 +58,7 @@ public class EmployeeController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetAllEmployeesResponse>> GetAll(GetAllEmployeesQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllEmployeesResponse>>(request, cancellationToken);
@@ -65,6 +70,7 @@ public class EmployeeController : BaseController
     }
     [HttpPost]
     [Route(nameof(GetDetails))]
+    [Authorize("SysAdmin")]
     public async Task<GetEmployeeDetailsResponse> GetDetails(GetEmployeeDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetEmployeeDetailsResponse>(request, cancellationToken);

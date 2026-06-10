@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Api.Controllers.Base;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Features.ProjectFeatures.Commands;
@@ -20,6 +21,7 @@ public class RoleController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize("SysAdmin")]
     public async Task<CreateRoleResponse> Create(CreateRoleCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateRoleResponse>(request, cancellationToken);
@@ -32,6 +34,7 @@ public class RoleController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
+    [Authorize("SysAdmin")]
     public async Task<UpdateRoleResponse> Update(UpdateRoleCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateRoleResponse>(request, cancellationToken);
@@ -44,6 +47,7 @@ public class RoleController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize("SysAdmin")]
     public async Task<DeleteRoleResponse> Delete(DeleteRoleCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteRoleResponse>(request, cancellationToken);
@@ -56,6 +60,7 @@ public class RoleController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetAllRolesResponse>> GetAll(GetAllRolesQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllRolesResponse>>(request, cancellationToken);
@@ -67,6 +72,7 @@ public class RoleController : BaseController
     }
     [HttpPost]
     [Route(nameof(GetDetails))]
+    [Authorize("SysAdmin")]
     public async Task<GetRoleDetailsResponse> GetDetails(GetRoleDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetRoleDetailsResponse>(request, cancellationToken);

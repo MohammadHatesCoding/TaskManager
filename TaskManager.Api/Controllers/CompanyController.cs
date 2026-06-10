@@ -9,7 +9,6 @@ namespace TaskManager.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize("SysAdmin")]
 public class CompanyController : BaseController
 {
     private readonly IDispatcher _dispatcher;
@@ -20,6 +19,7 @@ public class CompanyController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize("SysAdmin")]
     public async Task<CreateCompanyResponse> Create([FromForm] CreateCompanyCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateCompanyResponse>(request, cancellationToken);
@@ -32,6 +32,7 @@ public class CompanyController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
+    [Authorize("SysAdmin")]
     public async Task<UpdateCompanyResponse> Update(UpdateCompanyCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateCompanyResponse>(request, cancellationToken);
@@ -44,6 +45,7 @@ public class CompanyController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize("SysAdmin")]
     public async Task<DeleteCompanyResponse> Delete(DeleteCompanyCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteCompanyResponse>(request, cancellationToken);
@@ -56,6 +58,7 @@ public class CompanyController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetAllCompaniesResponse>> GetAll(GetAllCompaniesQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllCompaniesResponse>>(request, cancellationToken);
@@ -67,6 +70,7 @@ public class CompanyController : BaseController
     }
     [HttpPost]
     [Route(nameof(GetDetails))]
+    [Authorize("SysAdmin")]
     public async Task<GetCompanyDetailsResponse> GetDetails(GetCompanyDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetCompanyDetailsResponse>(request, cancellationToken);

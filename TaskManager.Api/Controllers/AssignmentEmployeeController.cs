@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Api.Controllers.Base;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Features.AssignmentEmployeeFeatures.Commands;
@@ -18,6 +19,7 @@ public class AssignmentEmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<CreateAssignmentEmployeeResponse> Create(CreateAssignmentEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateAssignmentEmployeeResponse>(request, cancellationToken);
@@ -30,6 +32,7 @@ public class AssignmentEmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<UpdateAssignmentEmployeeResponse> Update(UpdateAssignmentEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateAssignmentEmployeeResponse>(request, cancellationToken);
@@ -42,6 +45,7 @@ public class AssignmentEmployeeController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<DeleteAssignmentEmployeeResponse> Delete(DeleteAssignmentEmployeeCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteAssignmentEmployeeResponse>(request, cancellationToken);
@@ -54,6 +58,7 @@ public class AssignmentEmployeeController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<List<GetAllAssignmentEmployeesResponse>> GetAll(GetAllAssignmentEmployeesQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllAssignmentEmployeesResponse>>(request, cancellationToken);
@@ -65,6 +70,7 @@ public class AssignmentEmployeeController : BaseController
     }
     [HttpPost]
     [Route(nameof(GetDetails))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<GetAssignmentEmployeeDetailsResponse> GetDetails(GetAssignmentEmployeeDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetAssignmentEmployeeDetailsResponse>(request, cancellationToken);

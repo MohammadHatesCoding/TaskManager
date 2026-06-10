@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Api.Controllers.Base;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Features.CommentFeatures.Commands;
@@ -20,6 +21,7 @@ public class CommentController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<CreateCommentResponse> Create(CreateCommentCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateCommentResponse>(request, cancellationToken);
@@ -32,6 +34,7 @@ public class CommentController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<UpdateCommentResponse> Update(UpdateCommentCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateCommentResponse>(request, cancellationToken);
@@ -44,6 +47,7 @@ public class CommentController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<DeleteCommentResponse> Delete(DeleteCommentCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteCommentResponse>(request, cancellationToken);
@@ -56,6 +60,7 @@ public class CommentController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<List<GetAllCommentsResponse>> GetAll(GetAllCommentsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllCommentsResponse>>(request, cancellationToken);
@@ -67,6 +72,7 @@ public class CommentController : BaseController
     }
     [HttpPost]
     [Route(nameof(GetDetails))]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<GetCommentDetailsResponse> GetDetails(GetCommentDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetCommentDetailsResponse>(request, cancellationToken);

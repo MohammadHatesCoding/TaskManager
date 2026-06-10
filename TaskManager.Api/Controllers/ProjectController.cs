@@ -9,7 +9,6 @@ namespace TaskManager.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize("SysAdmin")]
 public class ProjectController : BaseController
 {
     private readonly IDispatcher _dispatcher;
@@ -20,6 +19,7 @@ public class ProjectController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize("SysAdmin")]
     public async Task<CreateProjectResponse> Create(CreateProjectCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateProjectResponse>(request, cancellationToken);
@@ -32,6 +32,7 @@ public class ProjectController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
+    [Authorize("SysAdmin")]
     public async Task<UpdateProjectResponse> Update(UpdateProjectCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateProjectResponse>(request, cancellationToken);
@@ -44,6 +45,7 @@ public class ProjectController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize("SysAdmin")]
     public async Task<DeleteProjectResponse> Delete(DeleteProjectCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteProjectResponse>(request, cancellationToken);
@@ -56,6 +58,7 @@ public class ProjectController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetAllProjectsResponse>> GetAll(GetAllProjectsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllProjectsResponse>>(request, cancellationToken);
@@ -67,6 +70,7 @@ public class ProjectController : BaseController
     }
     [HttpPost]
     [Route(nameof(GetDetails))]
+    [Authorize("SysAdmin")]
     public async Task<GetProjectDetailsResponse> GetDetails(GetProjectDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetProjectDetailsResponse>(request, cancellationToken);

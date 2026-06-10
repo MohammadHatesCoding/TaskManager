@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Api.Controllers.Base;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Features.UserRoleFeatures.Commands;
@@ -18,6 +19,7 @@ public class UserRoleController : BaseController
 
     [HttpPost]
     [Route(nameof(Create))]
+    [Authorize("SysAdmin")]
     public async Task<CreateUserRoleResponse> Create(CreateUserRoleCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateUserRoleResponse>(request, cancellationToken);
@@ -30,6 +32,7 @@ public class UserRoleController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
+    [Authorize("SysAdmin")]
     public async Task<DeleteUserRoleResponse> Delete(DeleteUserRoleCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteUserRoleResponse>(request, cancellationToken);
@@ -42,6 +45,7 @@ public class UserRoleController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetAllUserRolesResponse>> GetAll(GetAllUserRolesQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetAllUserRolesResponse>>(request, cancellationToken);
@@ -54,6 +58,7 @@ public class UserRoleController : BaseController
 
     [HttpPost]
     [Route(nameof(GetAllByRoleId))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetUserRolesByRoleIdResponse>> GetAllByRoleId(GetUserRolesByRoleIdQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetUserRolesByRoleIdResponse>>(request, cancellationToken);
@@ -66,6 +71,7 @@ public class UserRoleController : BaseController
 
     [HttpPost]
     [Route(nameof(GetAllByUserId))]
+    [Authorize("SysAdmin")]
     public async Task<List<GetUserRolesByUserIdResponse>> GetAllByUserId(GetUserRolesByUserIdQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<List<GetUserRolesByUserIdResponse>>(request, cancellationToken);
