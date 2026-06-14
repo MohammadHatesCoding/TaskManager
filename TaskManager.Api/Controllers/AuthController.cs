@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Api.Controllers.Base;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Features.AuthFeatures.Commands;
@@ -41,6 +42,7 @@ public class AuthController : BaseController
 
     [HttpPost]
     [Route(nameof(Logout))]
+    [Authorize("SysAdmin")]
     public async Task<LogoutResponse> Logout(LogoutCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<LogoutResponse>(request, cancellationToken);

@@ -17,9 +17,14 @@ public class CreatePasswordCommandHandler : IRequestHandler<CreatePasswordComman
     {
         try
         {
+            var passwordsMatch = request.command.Password.ToLower() == request.command.ConfirmPassword.ToLower();
+
+            if(!passwordsMatch)
+                throw new Exception(message: "Passwords do not match!");
+
             var passwordHash = _passwordService.HashPassword(request.command.Password);
 
-            var user = await _unitOfWork.UserRepository.Find(x => x.Username.Equals(request.command.Username));
+            var user = await _unitOfWork.UserRepository.Find(x => x.Id.Equals(request.command.UserId));
 
             user.PasswordHash = passwordHash;
 

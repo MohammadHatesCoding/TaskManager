@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
-using TaskManager.Business.Features.UserFeatures.Commands;
 using TaskManager.Domain.Models;
 
 namespace TaskManager.Business.Features.AuthFeatures.Commands;
@@ -21,21 +20,25 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
         try
         {
             if (await _unitOfWork.UserRepository.Exists(x => x.Email == request.command.Email || x.NationalCode == request.command.NationalCode))
-                throw new Exception(message: "ایمیل قبلا در سامانه ثبت شده است!");
+                throw new Exception(message: "ایمیل قبلا در سامانه ثبت شده است!"); 
 
             if (await _unitOfWork.UserRepository.Exists(x => x.NationalCode == request.command.NationalCode))
                 throw new Exception(message: "کاربر قبلا در سامانه ثبت شده است!");
 
-            if(await _unitOfWork.UserRepository.Exists(x => x.Username.Equals(request.command.Username, StringComparison.OrdinalIgnoreCase)))
+            if(await _unitOfWork.UserRepository.Exists(x => x.Username.ToLower() == request.command.Username.ToLower()))
                 throw new Exception(message: "نام کاربری موجود نیست!");
 
             var user = _mapper.Map<User>(request.command);
 
             await _unitOfWork.UserRepository.CreateAsync(user);
 
+            var role = await _unitOfWork.RoleRepository.Find(x => x.Title == "User");
+
+            await _unitOfWork.UserRoleRepository.CreateAsync(user.Id, role.Id);
+
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return new RegisterResponse(Success: true);
+            return new RegisterResponse(Id: user.Id);
         }
         catch (Exception ex)
         {

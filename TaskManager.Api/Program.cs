@@ -62,6 +62,23 @@ builder.Services.AddAuthorization(options =>
 });
 #endregion
 
+//تنظیمات فرانت آرتا
+#region Connecting to local front end 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
+#endregion
+
 #region
 builder.Services.AddServices(builder.Configuration);
 //builder.Services.AddAssemblies(builder.Configuration);
@@ -83,6 +100,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("Frontend"); //for local front we can remove later
 
 app.UseAuthentication();
 app.UseAuthorization();

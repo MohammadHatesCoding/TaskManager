@@ -23,7 +23,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
         try
         {
             var user = await _unitOfWork.UserRepository
-                .Find(x => x.Username.ToLower().Equals(request.command.Username.ToLower()));
+                .Find(x => x.Username.ToLower() == request.command.Username.ToLower());
 
             if (user == null || !user.IsActive)
                 throw new UnauthorizedAccessException();

@@ -1,6 +1,10 @@
-﻿using TaskManager.Business.Abstraction.Interfaces.Repositories.Base;
+﻿using System.Linq.Expressions;
+using TaskManager.Business.Abstraction.Interfaces.Repositories.Base;
 using TaskManager.Domain.Models;
 
 namespace TaskManager.Business.Abstraction.Interfaces.Repositories;
 
-public interface IRoleRepository : IBaseRepository<Role> { }
+public interface IRoleRepository : IBaseRepository<Role> 
+{
+    Task<Role> Find(Expression<Func<Role, bool>> predicate);
+}
