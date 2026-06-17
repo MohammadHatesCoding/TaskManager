@@ -23,7 +23,7 @@ internal class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordComman
             if (!request.command.Password.Equals(request.command.ConfirmPassword))
                 throw new ValidationException("Passwords dont match.");
 
-            var hashedInputPasswordResetToken = _tokenService.Hash(request.command.ResetPasswordToken);
+            var hashedInputPasswordResetToken = _tokenService.Hash(request.command.RawResetPasswordToken);
 
             var passwordResetTokenEntity = await _unitOfWork.PasswordResetTokenRepository.GetByTokenHashAsync(hashedInputPasswordResetToken);
 
@@ -32,7 +32,7 @@ internal class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordComman
                 passwordResetTokenEntity.ExpiresAt < DateTime.UtcNow)
                 throw new UnauthorizedAccessException();
 
-            if (_tokenService.Verify(request.command.ResetPasswordToken, passwordResetTokenEntity.Token))
+            if (!_tokenService.Verify(request.command.RawResetPasswordToken, passwordResetTokenEntity.Token))
                 throw new UnauthorizedAccessException();
 
             var user = await _unitOfWork.UserRepository.GetByIdAsync(passwordResetTokenEntity.UserId);

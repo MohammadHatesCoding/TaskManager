@@ -23,7 +23,7 @@ public class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordComman
         try
         {
             var user = await _unitOfWork.UserRepository
-                .Find(x => x.Username.Equals(request.command.Username, StringComparison.OrdinalIgnoreCase));
+                .Find(x => x.Username.ToLower() == request.command.Username.ToLower());
 
             if (user is null)
                 throw new UnauthorizedAccessException("نام کاربری یافت نشد!");
@@ -43,7 +43,9 @@ public class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordComman
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            string ResetLink = $"https://frontend.com/reset-password?ResetPasswordToken={rawPasswordResetToken}";
+            //string ResetLink = $"https://frontend.com/reset-password?resetPasswordToken={rawPasswordResetToken}";
+
+            string ResetLink = $"http://localhost:5173/reset-password?rawResetPasswordToken={rawPasswordResetToken}";
 
             _emailService.SendEmail(to: user.Email, subject: "Password reset request", body: $"برای تنظیم مجدد Password خود وارد لینک زیر شوید :\n{ResetLink}");
 
