@@ -84,6 +84,7 @@ builder.Services.AddServices(builder.Configuration);
 //builder.Services.AddAssemblies(builder.Configuration);
 //builder.Services.AddMediatR(builder.Configuration);
 builder.Services.AddMediatorHandlers(builder.Configuration);
+builder.Services.AddValidators(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 #endregion
 

@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 
 namespace TaskManager.Infrastructure.Mediator;
@@ -7,44 +7,79 @@ namespace TaskManager.Infrastructure.Mediator;
 public class Dispatcher : IDispatcher
 {
     private readonly IServiceProvider _serviceProvider;
-    //private readonly Dictionary<Type, object> _handlers = new();
-    public Dispatcher(IServiceProvider serviceProvider/*, Assembly[]? assemblies = null*/)
+    public Dispatcher(IServiceProvider serviceProvider)
     {
-        //assemblies ??= new[] { Assembly.GetExecutingAssembly() }; // fallback
-
-        //foreach (var assembly in assemblies)
-        //{
-        //    var handlerTypes = assembly.GetTypes()
-        //        .Where(t => t.GetInterfaces()
-        //            .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>)));
-
-        //    foreach (var handlerType in handlerTypes)
-        //    {
-        //        var handlerInterface = handlerType.GetInterfaces()
-        //            .First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>));
-
-        //        var handlerInstance = serviceProvider.GetRequiredService(handlerType);
-
-        //        var requestType = handlerInterface.GenericTypeArguments[0];
-        //        _handlers[requestType] = handlerInstance;
-        //    }
-        //}
-
         _serviceProvider = serviceProvider;
     }
-    public Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken)
+    public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken)
     {
-        //var requestType = request.GetType();
-        //if (_handlers.TryGetValue(requestType, out var handlerObj))
-        //{
-        //    dynamic dynHandler = handlerObj;
-        //    dynamic dynRequest = request;
-        //    return dynHandler.Send(dynRequest);
-        //}
-
-        //throw new Exception($"Handler not found for {requestType.Name}");
-
         var requestType = request.GetType();
+
+        var validatorType = typeof(IValidator<>)
+                    .MakeGenericType(requestType);
+
+        var validators = _serviceProvider
+            .GetServices(validatorType);
+
+        foreach (var validator in validators)
+        {
+            var validateMethod = validator.GetType()
+                .GetMethod("ValidateAsync", new[]
+                {
+                    requestType,
+                    typeof(CancellationToken)
+                });
+
+            if (validateMethod is not null)
+            {
+                var validationTask =
+                    (Task)validateMethod.Invoke(
+                        validator,
+                        new object[]
+                        {
+                            request,
+                            cancellationToken
+                        })!;
+
+                await validationTask;
+
+                var resultProperty = validationTask
+                    .GetType()
+                    .GetProperty("Result");
+
+                var validationResult =
+                    resultProperty?.GetValue(validationTask);
+
+                var isValidProperty = validationResult?
+                    .GetType()
+                    .GetProperty("IsValid");
+
+                var isValid =
+                    (bool)(isValidProperty?.GetValue(validationResult) ?? true);
+
+                if (!isValid)
+                {
+                    var errorsProperty = validationResult!
+                        .GetType()
+                        .GetProperty("Errors");
+
+                    var errors =
+                        (IEnumerable<object>)errorsProperty!
+                            .GetValue(validationResult)!;
+
+                    var messages = errors
+                        .Select(x =>
+                            x.GetType()
+                             .GetProperty("ErrorMessage")!
+                             .GetValue(x)?
+                             .ToString());
+
+                    throw new ValidationException(
+                        string.Join(Environment.NewLine, messages));
+                }
+            }
+        }
+
         var handlerInterfaceType = typeof(IRequestHandler<,>).MakeGenericType(requestType, typeof(TResponse));
         var handler = _serviceProvider.GetService(handlerInterfaceType);
 
@@ -61,6 +96,6 @@ public class Dispatcher : IDispatcher
 
         var result = handleMethod.Invoke(handler, new object[] { request, cancellationToken });
 
-        return (Task<TResponse>)result;
+        return await (Task<TResponse>)result;
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -14,6 +13,7 @@ using TaskManager.Infrastructure.Persistance.Repositories;
 using TaskManager.Infrastructure.Persistance.Repositories.Base;
 using TaskManager.Infrastructure.Persistance.UnitOfWork;
 using TaskManager.Infrastructure.Services;
+using FluentValidation;
 
 namespace TaskManager.Infrastructure.DependencyInjection;
 
@@ -142,11 +142,11 @@ public static class InfrastructureDI
         params Assembly[] assembliesToScan)
     {
         if (assembliesToScan == null || assembliesToScan.Length == 0)
-        {
+        {   
             assembliesToScan = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(assembly => assembly.FullName != null && assembly.FullName.StartsWith("TaskManager."))
                 .ToArray();
-       }
+        }
 
         var handlerAssemblies = assembliesToScan
             .Where(assembly => assembly.GetTypes().Any(t =>
@@ -172,6 +172,23 @@ public static class InfrastructureDI
         }
 
         services.AddScoped<IDispatcher, Dispatcher>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddValidators(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        params Assembly[] assembliesToScan)
+    {
+        if (assembliesToScan == null || assembliesToScan.Length == 0)
+        {
+            assembliesToScan = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(assembly => assembly.FullName != null && assembly.FullName.StartsWith("TaskManager."))
+                .ToArray();
+        }
+
+        services.AddValidatorsFromAssemblies(assembliesToScan);
 
         return services;
     }
