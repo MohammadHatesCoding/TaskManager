@@ -7,8 +7,7 @@ public class GetProfileDetailsQueryValidator : AbstractValidator<GetProfileDetai
 {
     public GetProfileDetailsQueryValidator()
     {
-        RuleFor(x => x.query.Id)
-            .NotEmpty();
+    
     }
 }
 

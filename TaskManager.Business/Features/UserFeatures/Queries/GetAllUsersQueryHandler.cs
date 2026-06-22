@@ -21,9 +21,9 @@ public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<Ge
         {
             var parameters = new CustomDynamicParameters();
 
-            var users = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllUsersResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
+            var models = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllUsersResponse>("GetAllUsers", parameters, null, System.Data.CommandType.StoredProcedure);
 
-            //var users = _mapper.Map<List<GetAllCompaniesResponse>>(models);
+            var users = _mapper.Map<List<GetAllUsersResponse>>(models);
 
             return users.ToList();
         }

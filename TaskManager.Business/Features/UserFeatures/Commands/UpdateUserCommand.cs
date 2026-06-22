@@ -34,14 +34,6 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 
         RuleFor(x => x.command.Username)
             .NotEmpty();
-
-        RuleFor(x => x.command.IsActive)
-            .NotNull()
-            .NotEmpty();
-
-        RuleFor(x => x.command.IsBlocked)
-            .NotNull()
-            .NotEmpty();
     }
 }
 

@@ -3,6 +3,7 @@ using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Abstraction.Interfaces.Services;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
 using TaskManager.Domain.Models;
+using TaskManager.Shared.Enums;
 
 namespace TaskManager.Business.Features.UserFeatures.Commands;
 
@@ -33,6 +34,12 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Creat
             user.Username = user.Email ?? user.NationalCode;
 
             await _unitOfWork.UserRepository.CreateAsync(user);
+
+            await _unitOfWork.CommitAsync(cancellationToken);
+
+            var role = await _unitOfWork.RoleRepository.Find(x => x.Title == Roles.User.ToString());
+
+            await _unitOfWork.UserRoleRepository.CreateAsync(user.Id, ((int)Roles.User));
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

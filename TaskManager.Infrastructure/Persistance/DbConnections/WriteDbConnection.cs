@@ -11,7 +11,7 @@ public class WriteDbConnection : IWriteDbConnection
     public WriteDbConnection(IConfiguration configuration)
     {
         _connection = new SqlConnection(
-            configuration.GetConnectionString(""));
+            configuration.GetConnectionString("HRM"));
     }
 
     private object? Convert(object? param)

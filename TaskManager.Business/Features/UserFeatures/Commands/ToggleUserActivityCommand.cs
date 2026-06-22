@@ -7,8 +7,8 @@ public class ToggleUserActivityCommandValidator : AbstractValidator<ToggleUserAc
 {
     public ToggleUserActivityCommandValidator()
     {
-        RuleFor(x => x.command.Id)
-            .NotEmpty();
+        RuleFor(x => x.command.UserId)
+            .NotNull();
     }
 }
 

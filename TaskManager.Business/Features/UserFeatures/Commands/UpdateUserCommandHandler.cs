@@ -2,6 +2,7 @@
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
 using TaskManager.Domain.Models;
+using TaskManager.Shared.Enums;
 
 namespace TaskManager.Business.Features.UserFeatures.Commands;
 
@@ -24,7 +25,20 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Updat
 
             var user = await _unitOfWork.UserRepository.GetByIdAsync(request.command.Id);
 
-            user = _mapper.Map<User>(request.command);
+            _mapper.Map(request.command, user);
+
+            var userRole = (await _unitOfWork.UserRoleRepository.GetUserRolesByUserIdAsync(user.Id))
+                .Where(x => x.RoleId != ((int)Roles.User)).ToList();
+
+            foreach (var item in userRole)
+            {
+                await _unitOfWork.UserRoleRepository.DeleteAsync(item.UserId, item.RoleId);
+            }
+
+            foreach (var item in request.command.UserRoles)
+            {
+                await _unitOfWork.UserRoleRepository.CreateAsync(item.UserId, item.RoleId);   
+            }
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

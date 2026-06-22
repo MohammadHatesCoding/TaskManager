@@ -128,11 +128,14 @@ public class MappingProfile : Profile
 
         #region User Mappers
 
-        CreateMap<CreateUserRequest, User>();
         CreateMap<CreateUserRequest, User>().ReverseMap();
-        CreateMap<UpdateUserRequest, User>();
-        CreateMap<UpdateUserRequest, User>().ReverseMap();
-        CreateMap<User, GetAllUsersResponse>();
+        CreateMap<UpdateUserRequest, User>()
+            .ForMember(x => x.UserRoles, opt => opt.Ignore())
+            .ReverseMap();
+        CreateMap<User, GetAllUsersResponse>().ReverseMap();
+        CreateMap<GetProfileDetailsResponse, User>().ReverseMap();
+        CreateMap<UpdateMyProfileRequest, User>().ReverseMap();
+        CreateMap<GetUserDetailsResponse, User>().ReverseMap();
 
         #endregion
 

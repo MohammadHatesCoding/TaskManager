@@ -1,17 +1,19 @@
 ﻿using AutoMapper;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
+using TaskManager.Business.Abstraction.Interfaces.Services;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
-using TaskManager.Business.Features.UserRoleFeatures.Queries;
 
 namespace TaskManager.Business.Features.UserFeatures.Queries;
 
 public class GetProfileDetailsQueryHandler : IRequestHandler<GetProfileDetailsQuery, GetProfileDetailsResponse>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUserService _currentUserService;
     private readonly IMapper _mapper;
-    public GetProfileDetailsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public GetProfileDetailsQueryHandler(IUnitOfWork unitOfWork, ICurrentUserService currentUserService, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _currentUserService = currentUserService;
         _mapper = mapper;
     }
 
@@ -19,7 +21,7 @@ public class GetProfileDetailsQueryHandler : IRequestHandler<GetProfileDetailsQu
     {
         try
         {
-            var model = await _unitOfWork.UserRepository.GetByIdAsync(request.query.Id);
+            var model = await _unitOfWork.UserRepository.GetByIdAsync(_currentUserService.UserId.Value);
 
             var user = _mapper.Map<GetProfileDetailsResponse>(model);            
 

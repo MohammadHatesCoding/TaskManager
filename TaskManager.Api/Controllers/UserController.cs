@@ -111,9 +111,9 @@ public class UserController : BaseController
     [HttpGet]
     [Route(nameof(GetAll))]
     [Authorize("SysAdmin")]
-    public async Task<List<GetAllUsersResponse>> GetAll(GetAllUsersQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllUsersResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllUsersResponse>>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllUsersResponse>>(new GetAllUsersQuery(new GetAllUsersRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();
@@ -134,12 +134,12 @@ public class UserController : BaseController
         return result;
     }
 
-    [HttpPost]
+    [HttpGet]
     [Route(nameof(GetProfileDetails))]
     [Authorize("SysAdmin")]
-    public async Task<GetProfileDetailsResponse> GetProfileDetails(GetProfileDetailsQuery request, CancellationToken cancellationToken)
+    public async Task<GetProfileDetailsResponse> GetProfileDetails(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<GetProfileDetailsResponse>(request, cancellationToken);
+        var result = await _dispatcher.Send<GetProfileDetailsResponse>(new GetProfileDetailsQuery(new GetProfileDetailsRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();

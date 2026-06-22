@@ -12,4 +12,4 @@ public class GetUserDetailsQueryValidator : AbstractValidator<GetUserDetailsQuer
     }
 }
 
-public record GetUserDetailsQuery(GetProfileDetailsRequest query) : IRequest<GetUserDetailsResponse>;
+public record GetUserDetailsQuery(GetUserDetailsRequest query) : IRequest<GetUserDetailsResponse>;

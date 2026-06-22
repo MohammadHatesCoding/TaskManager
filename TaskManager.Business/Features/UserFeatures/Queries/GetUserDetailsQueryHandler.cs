@@ -20,14 +20,17 @@ public class GetUserDetailsQueryHandler : IRequestHandler<GetUserDetailsQuery, G
     {
         try
         {
+            
             var model = await _unitOfWork.UserRepository.GetByIdAsync(request.query.Id);
 
             var param = new CustomDynamicParameters();
 
+            param.Add("UserId", request.query.Id);
+
             var userRoles = await _unitOfWork.ReadDbConnection
-                .QueryAsync<GetUserRoleDetailsByUserIdResponse>("", param, null, System.Data.CommandType.StoredProcedure);
-                
-            var user = _mapper.Map<GetUserDetailsResponse>(model) with { UserRoles = userRoles.ToList()};            
+                .QueryAsync<GetUserRoleDetailsByUserIdResponse>("GetUserRoleDetailsByUserId", param, null, System.Data.CommandType.StoredProcedure);
+
+            var user = _mapper.Map<GetUserDetailsResponse>(model) with { UserRoles = userRoles.ToList() };
 
             return user;
         }

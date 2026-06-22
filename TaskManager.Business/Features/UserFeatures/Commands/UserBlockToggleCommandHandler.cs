@@ -14,7 +14,7 @@ public class UserBlockToggleCommandHandler : IRequestHandler<UserBlockToggleComm
     {
         try
         {
-            var user = await _unitOfWork.UserRepository.GetByIdAsync(request.command.Id);
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(request.command.UserId);
 
             user.IsBlocked = !user.IsBlocked;
 

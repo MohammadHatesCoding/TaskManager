@@ -1,3 +1,3 @@
 ﻿namespace TaskManager.Business.Features.UserFeatures.Queries;
 
-public record GetUserDetailsRequestRequest(Guid Id);
+public record GetUserDetailsRequest(Guid Id);

@@ -7,7 +7,7 @@ public class UserBlockToggleCommandValidator : AbstractValidator<UserBlockToggle
 {
     public UserBlockToggleCommandValidator()
     {
-        RuleFor(x => x.command.Id)
+        RuleFor(x => x.command.UserId)
             .NotEmpty();
     }
 }
