@@ -19,7 +19,7 @@ public class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand,
     {
         try
         {
-            var company = await _unitOfWork.CompanyRepository.GetByIdAsync(request.command.Id);
+            var company = await _unitOfWork.CompanyRepository.GetByIdAsync(request.command.CompanyId);
 
             company.IsDeleted = true;
 

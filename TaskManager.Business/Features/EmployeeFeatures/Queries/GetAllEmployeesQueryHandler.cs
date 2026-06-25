@@ -2,7 +2,6 @@
 using TaskManager.Business.Abstraction.Data;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
-using TaskManager.Business.Features.DepartmentFeatures.Queries;
 
 namespace TaskManager.Business.Features.EmployeeFeatures.Queries;
 
@@ -22,9 +21,9 @@ public class GetAllEmployeesQueryHandler : IRequestHandler<GetAllEmployeesQuery,
         {
             var parameters = new CustomDynamicParameters();
 
-            var employees = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllEmployeesResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
+            var models = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllEmployeesResponse>("GetAllEmployees", parameters, null, System.Data.CommandType.StoredProcedure);
 
-            //var employees = _mapper.Map<List<GetAllCompaniesResponse>>(models);
+            var employees = _mapper.Map<List<GetAllEmployeesResponse>>(models);
 
             return employees.ToList();
         }

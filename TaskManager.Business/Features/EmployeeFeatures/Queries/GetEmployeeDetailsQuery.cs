@@ -8,7 +8,7 @@ public class GetEmployeeDetailsQueryValidator : AbstractValidator<GetEmployeeDet
 {
     public GetEmployeeDetailsQueryValidator()
     {
-        RuleFor(x => x.query.Id)
+        RuleFor(x => x.query.EmployeeId)
             .NotEmpty()
             .NotNull()
             .GreaterThan(0);

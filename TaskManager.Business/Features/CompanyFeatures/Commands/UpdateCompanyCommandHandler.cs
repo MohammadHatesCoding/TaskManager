@@ -21,9 +21,9 @@ public class UpdateCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand,
         {
             var company = await _unitOfWork.CompanyRepository.GetByIdAsync(request.command.Id);
 
-            company = _mapper.Map<Company>(request.command);
+            _mapper.Map(request.command, company);
 
-            await _unitOfWork.CompanyRepository.UpdateAsync(company);
+            company.UpdateDate = DateTime.Now;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

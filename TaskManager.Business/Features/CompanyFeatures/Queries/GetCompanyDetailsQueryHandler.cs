@@ -18,9 +18,15 @@ public class GetCompanyDetailsQueryHandler : IRequestHandler<GetCompanyDetailsQu
     {
         try
         {
-            var model = await _unitOfWork.CompanyRepository.GetByIdAsync(request.query.Id);
+            var companyModel = await _unitOfWork.CompanyRepository.GetByIdAsync(request.query.CompanyId);
 
-            var company = _mapper.Map<GetCompanyDetailsResponse>(model);
+            var company = _mapper.Map<GetCompanyDetailsResponse>(companyModel);
+
+            var departmentModels = await _unitOfWork.DepartmentRepository.GetAllDepartmentdByCompanyId(request.query.CompanyId);
+
+            var deparments = _mapper.Map<List<GetAllDepartmentsByCompanyIdResponse>>(departmentModels);
+
+            company = company with { Departments = deparments };
 
             return company;
         }

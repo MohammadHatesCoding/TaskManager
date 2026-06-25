@@ -1,4 +1,5 @@
-﻿using TaskManager.Business.Abstraction.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManager.Business.Abstraction.Interfaces.Repositories;
 using TaskManager.Domain.Models;
 using TaskManager.Infrastructure.Persistance.Context;
 using TaskManager.Infrastructure.Persistance.Repositories.Base;
@@ -11,5 +12,10 @@ internal class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepositor
     public EmployeeRepository(ApplicationDbContext context) : base(context)
     {
         _context = context;
+    }
+
+    public async Task<List<Employee>> GetEmployeesByDepartmentId(int DepartmentId)
+    {
+        return await _context.Employees.Where(x => x.DepartmentId == DepartmentId).ToListAsync();
     }
 }

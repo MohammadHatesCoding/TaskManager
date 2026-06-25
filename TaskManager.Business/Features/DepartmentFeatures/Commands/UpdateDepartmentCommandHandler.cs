@@ -21,9 +21,11 @@ public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCo
         {
             var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(request.command.Id);
 
-            department = _mapper.Map<Department>(request.command);
+            _mapper.Map(request.command, department);
 
             await _unitOfWork.DepartmentRepository.UpdateAsync(department);
+
+            department.UpdateDate = DateTime.Now;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

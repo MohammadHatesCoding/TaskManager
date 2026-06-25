@@ -1,3 +1,3 @@
 ﻿namespace TaskManager.Business.Features.EmployeeFeatures.Queries;
 
-public record GetEmployeeDetailsRequest(int EmployeeId);
+public record GetAllEmployeesByCompanyIdRequest(int CompanyId);

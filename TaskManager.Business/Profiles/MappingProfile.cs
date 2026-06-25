@@ -68,42 +68,41 @@ public class MappingProfile : Profile
 
         #region Company Mappers
 
-        CreateMap<CreateCompanyRequest, Company>();
         CreateMap<CreateCompanyRequest, Company>().ReverseMap();
-        CreateMap<UpdateCompanyRequest, Company>();
         CreateMap<UpdateCompanyRequest, Company>().ReverseMap();
-        CreateMap<Company, GetAllCompaniesResponse>();
-
+        CreateMap<GetAllCompaniesResponse, Company>().ReverseMap();
+        CreateMap<GetCompanyDetailsResponse, Company>()
+            .ForMember(x => x.Departments, opt => opt.Ignore())
+            .ReverseMap();
         #endregion
 
         #region Department Mappers
 
-        CreateMap<CreateDepartmentRequest, Department>();
         CreateMap<CreateDepartmentRequest, Department>().ReverseMap();
-        CreateMap<UpdateDepartmentRequest, Department>();
         CreateMap<UpdateDepartmentRequest, Department>().ReverseMap();
-        CreateMap<Department, GetAllDepartmentsResponse>();
+        CreateMap<GetAllDepartmentsResponse, Department>().ReverseMap();
+        CreateMap<GetAllDepartmentsByCompanyIdResponse, Department>().ReverseMap();
+        CreateMap<GetDepartmentDetailsResponse, Department>()
+            .ForMember(x => x.Employees, opt => opt.Ignore())
+            .ReverseMap();
 
         #endregion
 
         #region Employee Mappers
 
-        CreateMap<CreateEmployeeRequest, Employee>();
         CreateMap<CreateEmployeeRequest, Employee>().ReverseMap();
-        CreateMap<UpdateEmployeeRequest, Employee>();
         CreateMap<UpdateEmployeeRequest, Employee>().ReverseMap();
-        CreateMap<Employee, GetAllEmployeesResponse>();
+        CreateMap<GetAllEmployeesResponse, Employee>().ReverseMap();
+        CreateMap<GetEmployeesByDepartmentId, Employee>().ReverseMap();
+        CreateMap<GetEmployeeDetailsResponse, Employee>().ReverseMap();
 
         #endregion
 
         #region ProjectEmployee Mappers
 
-        CreateMap<CreateProjectEmployeeRequest, ProjectEmployee>();
         CreateMap<CreateProjectEmployeeRequest, ProjectEmployee>().ReverseMap();
-        CreateMap<UpdateProjectEmployeeRequest, ProjectEmployee>();
         CreateMap<UpdateProjectEmployeeRequest, ProjectEmployee>().ReverseMap();
-        CreateMap<ProjectEmployee, GetAllProjectEmployeesResponse>();
-
+        CreateMap<GetAllProjectEmployeesResponse, ProjectEmployee>().ReverseMap();
         #endregion
 
         #region Project Mappers

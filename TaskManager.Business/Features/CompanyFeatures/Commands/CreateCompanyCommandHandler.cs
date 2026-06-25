@@ -19,6 +19,9 @@ public class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyCommand,
     {
         try
         {
+            if (_unitOfWork.CompanyRepository.Exists(x => x.RegisterationNumber == request.command.RegisterationNumber).Result)
+                throw new Exception();
+
             var company = _mapper.Map<Company>(request.command);
 
             await _unitOfWork.CompanyRepository.CreateAsync(company);

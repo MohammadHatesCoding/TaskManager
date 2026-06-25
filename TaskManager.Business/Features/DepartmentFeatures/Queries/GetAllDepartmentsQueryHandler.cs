@@ -21,11 +21,11 @@ public class GetAllDepartmentsQueryHandler : IRequestHandler<GetAllDepartmentsQu
         {
             var parameters = new CustomDynamicParameters();
 
-            var companies = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllDepartmentsResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
+            var models = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllDepartmentsResponse>("GetAllDepartments", parameters, null, System.Data.CommandType.StoredProcedure);
 
-            //var companies = _mapper.Map<List<GetAllCompaniesResponse>>(models);
+            var departments = _mapper.Map<List<GetAllDepartmentsResponse>>(models);
 
-            return companies.ToList();
+            return departments.ToList();
         }
         catch (Exception ex)
         {

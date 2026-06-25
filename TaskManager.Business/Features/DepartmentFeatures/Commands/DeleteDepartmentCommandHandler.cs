@@ -19,7 +19,7 @@ public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCo
     {
         try
         {
-            var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(request.command.Id);
+            var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(request.command.DepartmentId);
 
             department.IsDeleted = true;
 

@@ -7,7 +7,7 @@ public class GetCompanyDetailsQueryValidator : AbstractValidator<GetCompanyDetai
 {
     public GetCompanyDetailsQueryValidator()
     {
-        RuleFor(x => x.query.Id)
+        RuleFor(x => x.query.CompanyId)
             .NotNull()
             .NotEmpty()
             .GreaterThan(0);

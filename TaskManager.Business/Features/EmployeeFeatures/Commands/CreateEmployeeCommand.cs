@@ -19,8 +19,7 @@ public class CreateEmployeeCommandValidator : AbstractValidator<CreateEmployeeCo
 
         RuleFor(x => x.command.UserId)
             .NotEmpty()
-            .NotNull()
-            .GreaterThan(0);
+            .NotNull();
 
         RuleFor(x => x.command.CompanyId)
             .NotEmpty()

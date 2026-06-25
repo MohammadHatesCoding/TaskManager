@@ -7,7 +7,7 @@ public class DeleteCompanyCommandValidator : AbstractValidator<DeleteCompanyComm
 {
     public DeleteCompanyCommandValidator()
     {
-        RuleFor(x => x.command.Id)
+        RuleFor(x => x.command.CompanyId)
             .NotNull()
             .NotEmpty()
             .GreaterThan(0);

@@ -7,7 +7,7 @@ public class GetDepartmentDetailsQueryValidator : AbstractValidator<GetDepartmen
 {
     public GetDepartmentDetailsQueryValidator()
     {
-        RuleFor(x => x.query.Id)
+        RuleFor(x => x.query.DepartmentId)
             .NotEmpty()
             .NotNull()
             .GreaterThan(0);

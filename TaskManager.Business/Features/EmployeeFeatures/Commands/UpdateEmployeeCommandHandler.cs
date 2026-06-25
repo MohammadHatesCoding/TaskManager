@@ -21,9 +21,9 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
         {
             var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(request.command.Id);
 
-            employee = _mapper.Map<Employee>(request.command);
+            _mapper.Map(request.command, employee);
 
-            await _unitOfWork.EmployeeRepository.UpdateAsync(employee);
+            employee.UpdateDate = DateTime.Now;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

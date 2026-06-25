@@ -19,7 +19,7 @@ public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeComman
     {
         try
         {
-            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(request.command.Id);
+            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(request.command.EmployeeId);
 
             employee.IsDeleted = true;
 

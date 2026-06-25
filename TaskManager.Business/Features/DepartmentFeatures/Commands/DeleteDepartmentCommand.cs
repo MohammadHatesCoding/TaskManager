@@ -7,7 +7,7 @@ public class DeleteDepartmentCommandValidator : AbstractValidator<DeleteDepartme
 {
     public DeleteDepartmentCommandValidator()
     {
-        RuleFor(x => x.command.Id)
+        RuleFor(x => x.command.DepartmentId)
             .NotNull()
             .GreaterThan(0);
     }

@@ -59,15 +59,16 @@ public class DepartmentController : BaseController
     [HttpGet]
     [Route(nameof(GetAll))]
     [Authorize("SysAdmin")]
-    public async Task<List<GetAllDepartmentsResponse>> GetAll(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllDepartmentsResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllDepartmentsResponse>>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllDepartmentsResponse>>(new GetAllDepartmentsQuery(new GetAllDepartmentsRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();
 
         return result;
     }
+
     [HttpPost]
     [Route(nameof(GetDetails))]
     [Authorize("SysAdmin")]

@@ -20,7 +20,7 @@ public class CompanyController : BaseController
     [HttpPost]
     [Route(nameof(Create))]
     [Authorize("SysAdmin")]
-    public async Task<CreateCompanyResponse> Create([FromForm] CreateCompanyCommand request, CancellationToken cancellationToken)
+    public async Task<CreateCompanyResponse> Create(CreateCompanyCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<CreateCompanyResponse>(request, cancellationToken);
 
@@ -59,15 +59,16 @@ public class CompanyController : BaseController
     [HttpGet]
     [Route(nameof(GetAll))]
     [Authorize("SysAdmin")]
-    public async Task<List<GetAllCompaniesResponse>> GetAll(GetAllCompaniesQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllCompaniesResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllCompaniesResponse>>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllCompaniesResponse>>(new GetAllCompaniesQuery(new GetAllCompaniesRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();
 
         return result;
     }
+
     [HttpPost]
     [Route(nameof(GetDetails))]
     [Authorize("SysAdmin")]

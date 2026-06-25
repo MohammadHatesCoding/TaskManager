@@ -1,3 +1,3 @@
 ﻿namespace TaskManager.Business.Features.CompanyFeatures.Queries;
 
-public record GetCompanyDetailsRequest(int Id);
+public record GetCompanyDetailsRequest(int CompanyId);

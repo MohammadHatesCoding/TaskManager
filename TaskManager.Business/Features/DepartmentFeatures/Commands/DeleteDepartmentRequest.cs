@@ -1,3 +1,3 @@
 ﻿namespace TaskManager.Business.Features.DepartmentFeatures.Commands;
 
-public record DeleteDepartmentRequest(int Id);
+public record DeleteDepartmentRequest(int DepartmentId);

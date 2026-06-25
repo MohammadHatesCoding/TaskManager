@@ -3,4 +3,7 @@ using TaskManager.Domain.Models;
 
 namespace TaskManager.Business.Abstraction.Interfaces.Repositories;
 
-public interface IEmployeeRepository : IBaseRepository<Employee> { }
+public interface IEmployeeRepository : IBaseRepository<Employee>
+{
+    Task<List<Employee>> GetEmployeesByDepartmentId(int DepartmentId);
+}

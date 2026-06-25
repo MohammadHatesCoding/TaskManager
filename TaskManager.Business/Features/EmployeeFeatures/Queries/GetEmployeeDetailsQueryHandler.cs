@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TaskManager.Business.Abstraction.Data;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
 
@@ -18,9 +19,12 @@ public class GetEmployeeDetailsQueryHandler : IRequestHandler<GetEmployeeDetails
     {
         try
         {
-            var model = await _unitOfWork.EmployeeRepository.GetByIdAsync(request.query.Id);
+            var parameters = new CustomDynamicParameters();
 
-            var employee = _mapper.Map<GetEmployeeDetailsResponse>(model);
+            parameters.Add("EmployeeId", request.query.EmployeeId);
+
+            var employee = await _unitOfWork.ReadDbConnection.
+                QueryFirstOrDefaultAsync<GetEmployeeDetailsResponse>("GetEmployeeDetailsById", parameters, null, System.Data.CommandType.StoredProcedure);
 
             return employee;
         }

@@ -21,9 +21,9 @@ public class GetAllCompaniesQueryHandler : IRequestHandler<GetAllCompaniesQuery,
         {
             var parameters = new CustomDynamicParameters();
 
-            var companies = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllCompaniesResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
+            var models = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllCompaniesResponse>("GetAllCompanies", parameters, null, System.Data.CommandType.StoredProcedure);
 
-            //var companies = _mapper.Map<List<GetAllCompaniesResponse>>(models);
+            var companies = _mapper.Map<List<GetAllCompaniesResponse>>(models);
 
             return companies.ToList();
         }

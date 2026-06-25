@@ -57,17 +57,32 @@ public class EmployeeController : BaseController
     }
 
     [HttpGet]
-    [Route(nameof(GetAll))]
+    [Route(nameof(GetAllEmployees))]
     [Authorize("SysAdmin")]
-    public async Task<List<GetAllEmployeesResponse>> GetAll(GetAllEmployeesQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllEmployeesResponse>> GetAllEmployees(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllEmployeesResponse>>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllEmployeesResponse>>(new GetAllEmployeesQuery(new GetAllEmployeesRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();
 
         return result;
     }
+
+
+    [HttpPost]
+    [Route(nameof(GetAllEmployeesByCompanyId))]
+    [Authorize("SysAdmin")]
+    public async Task<List<GetAllEmployeesByCompanyIdResponse>> GetAllEmployeesByCompanyId(GetAllEmployeesByCompanyIdQuery request, CancellationToken cancellationToken)
+    {
+        var result = await _dispatcher.Send<List<GetAllEmployeesByCompanyIdResponse>>(request, cancellationToken);
+
+        if (result is null)
+            throw new Exception();
+
+        return result;
+    }
+
     [HttpPost]
     [Route(nameof(GetDetails))]
     [Authorize("SysAdmin")]
