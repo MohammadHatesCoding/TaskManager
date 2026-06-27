@@ -25,7 +25,7 @@ public class CreateAssignmentCommandHandler : IRequestHandler<CreateAssignmentCo
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return new CreateAssignmentResponse(Id: assignment.Id);
+            return new CreateAssignmentResponse(Success: true);
         }
         catch (Exception ex) 
         {

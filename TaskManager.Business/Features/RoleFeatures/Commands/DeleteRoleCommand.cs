@@ -7,7 +7,7 @@ public class DeleteRoleCommandValidator : AbstractValidator<DeleteRoleCommand>
 {
     public DeleteRoleCommandValidator()
     {
-        RuleFor(x => x.command.Id)
+        RuleFor(x => x.command.RoleId)
             .NotNull()
             .GreaterThan(0);
     }

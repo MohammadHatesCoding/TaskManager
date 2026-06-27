@@ -21,9 +21,9 @@ public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand,
         {
             var project = await _unitOfWork.ProjectRepository.GetByIdAsync(request.command.Id);
 
-            project = _mapper.Map<Project>(request.command);
+            _mapper.Map(request.command, project);
 
-            await _unitOfWork.ProjectRepository.UpdateAsync(project);
+            project.UpdateDate = DateTime.Now;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

@@ -1,3 +1,5 @@
-﻿namespace TaskManager.Business.Features.RoleFeatures.Commands;
+﻿using TaskManager.Shared.Enums;
 
-public record CreateRoleRequest(string Title, int Type);
+namespace TaskManager.Business.Features.RoleFeatures.Commands;
+
+public record CreateRoleRequest(string Title, RoleType Type);

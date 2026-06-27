@@ -7,7 +7,7 @@ public class GetProjectDetailsQueryValidator : AbstractValidator<GetProjectDetai
 {
     public GetProjectDetailsQueryValidator()
     {
-        RuleFor(x => x.query.Id)
+        RuleFor(x => x.query.ProjectId)
             .NotEmpty()
             .NotNull()
             .GreaterThan(0);

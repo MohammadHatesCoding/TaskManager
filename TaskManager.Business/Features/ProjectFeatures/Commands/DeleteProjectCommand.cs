@@ -7,7 +7,7 @@ public class DeleteProjectCommandValidator : AbstractValidator<DeleteProjectComm
 {
     public DeleteProjectCommandValidator()
     {
-        RuleFor(x => x.command.Id)
+        RuleFor(x => x.command.ProjectId)
             .NotEmpty()
             .NotNull()
             .GreaterThan(0);

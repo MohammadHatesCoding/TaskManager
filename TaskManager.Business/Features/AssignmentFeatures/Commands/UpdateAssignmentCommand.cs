@@ -16,7 +16,7 @@ public class UpdateAssignmentCommandValidator : AbstractValidator<UpdateAssignme
             .NotEmpty()
             .MaximumLength(100);
 
-        RuleFor(x => x.command.Describtion)
+        RuleFor(x => x.command.Description)
             .NotEmpty()
             .MaximumLength(700);
 

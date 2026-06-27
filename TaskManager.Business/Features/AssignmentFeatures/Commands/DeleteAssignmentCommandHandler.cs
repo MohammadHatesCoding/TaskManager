@@ -25,7 +25,7 @@ public class DeleteAssignmentCommandHandler : IRequestHandler<DeleteAssignmentCo
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return new DeleteAssignmentResponse(Id: assignment.Id);
+            return new DeleteAssignmentResponse(Success: true);
         }
         catch (Exception ex) 
         {

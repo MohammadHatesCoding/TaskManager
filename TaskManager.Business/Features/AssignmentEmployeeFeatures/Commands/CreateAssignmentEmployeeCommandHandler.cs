@@ -25,7 +25,7 @@ public class CreateAssignmentEmployeeCommandHandler : IRequestHandler<CreateAssi
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return new CreateAssignmentEmployeeResponse(Id: assignmentEmployee.Id);
+            return new CreateAssignmentEmployeeResponse(Success: true);
         }
         catch (Exception ex) 
         {

@@ -59,15 +59,29 @@ public class ProjectController : BaseController
     [HttpGet]
     [Route(nameof(GetAll))]
     [Authorize("SysAdmin")]
-    public async Task<List<GetAllProjectsResponse>> GetAll(GetAllProjectsQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllProjectsResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllProjectsResponse>>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllProjectsResponse>>(new GetAllProjectsQuery(new GetAllProjectsRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();
 
         return result;
     }
+
+    [HttpPost]
+    [Route(nameof(GetAllProjectsByCompanyId))]
+    [Authorize("SysAdmin")]
+    public async Task<List<GetAllProjectsByCompanyIdResponse>> GetAllProjectsByCompanyId(GetAllProjectsByCompanyIdQuery request, CancellationToken cancellationToken)
+    {
+        var result = await _dispatcher.Send<List<GetAllProjectsByCompanyIdResponse>>(request, cancellationToken);
+
+        if (result is null)
+            throw new Exception();
+
+        return result;
+    }
+
     [HttpPost]
     [Route(nameof(GetDetails))]
     [Authorize("SysAdmin")]

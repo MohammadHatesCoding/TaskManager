@@ -21,13 +21,13 @@ public class UpdateRoleCommandHandler : IRequestHandler<UpdateRoleCommand, Updat
         {
             var role = await _unitOfWork.RoleRepository.GetByIdAsync(request.command.Id);
 
-            role = _mapper.Map<Role>(request.command);
+            _mapper.Map(request.command, role);
 
-            await _unitOfWork.RoleRepository.UpdateAsync(role);
+            role.UpdateDate = DateTime.Now;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return new UpdateRoleResponse(Id: role.Id);
+            return new UpdateRoleResponse(Success: true);
         }
         catch (Exception ex) 
         {

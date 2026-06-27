@@ -31,19 +31,6 @@ public class AssignmentEmployeeController : BaseController
     }
 
     [HttpPost]
-    [Route(nameof(Update))]
-    [Authorize(Roles = "SysAdmin")]
-    public async Task<UpdateAssignmentEmployeeResponse> Update(UpdateAssignmentEmployeeCommand request, CancellationToken cancellationToken)
-    {
-        var result = await _dispatcher.Send<UpdateAssignmentEmployeeResponse>(request, cancellationToken);
-
-        if (result is null)
-            throw new Exception();
-
-        return result;
-    }
-
-    [HttpPost]
     [Route(nameof(Delete))]
     [Authorize(Roles = "SysAdmin")]
     public async Task<DeleteAssignmentEmployeeResponse> Delete(DeleteAssignmentEmployeeCommand request, CancellationToken cancellationToken)
@@ -59,21 +46,10 @@ public class AssignmentEmployeeController : BaseController
     [HttpGet]
     [Route(nameof(GetAll))]
     [Authorize(Roles = "SysAdmin")]
-    public async Task<List<GetAllAssignmentEmployeesResponse>> GetAll(GetAllAssignmentEmployeesQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllAssignmentEmployeesResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllAssignmentEmployeesResponse>>(request, cancellationToken);
-
-        if (result is null)
-            throw new Exception();
-
-        return result;
-    }
-    [HttpPost]
-    [Route(nameof(GetDetails))]
-    [Authorize(Roles = "SysAdmin")]
-    public async Task<GetAssignmentEmployeeDetailsResponse> GetDetails(GetAssignmentEmployeeDetailsQuery request, CancellationToken cancellationToken)
-    {
-        var result = await _dispatcher.Send<GetAssignmentEmployeeDetailsResponse>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllAssignmentEmployeesResponse>>
+            (new GetAllAssignmentEmployeesQuery(new GetAllAssignmentEmployeesRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();

@@ -21,9 +21,9 @@ public class UpdateAssignmentCommandHandler : IRequestHandler<UpdateAssignmentCo
         {
             var assignment = await _unitOfWork.AssignmentRepository.GetByIdAsync(request.command.Id);
 
-            assignment = _mapper.Map<Assignment>(request.command);
+            _mapper.Map(request.command, assignment);
 
-            await _unitOfWork.AssignmentRepository.UpdateAsync(assignment);
+            assignment.UpdateDate = DateTime.UtcNow;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

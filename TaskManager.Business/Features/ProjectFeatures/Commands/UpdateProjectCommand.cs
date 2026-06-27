@@ -29,10 +29,6 @@ public class UpdateProjectCommandValidator : AbstractValidator<UpdateProjectComm
 
         RuleFor(x => x.command.StartDate)
             .NotNull();
-
-        RuleFor(x => x.command.Status)
-            .NotEmpty()
-            .NotNull();
     }
 }
 

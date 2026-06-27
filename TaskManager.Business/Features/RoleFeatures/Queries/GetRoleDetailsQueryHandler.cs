@@ -18,7 +18,7 @@ public class GetRoleDetailsQueryHandler : IRequestHandler<GetRoleDetailsQuery, G
     {
         try
         {
-            var model = await _unitOfWork.RoleRepository.GetByIdAsync(request.query.Id);
+            var model = await _unitOfWork.RoleRepository.GetByIdAsync(request.query.RoleId);
 
             var role = _mapper.Map<GetRoleDetailsResponse>(model);
 

@@ -2,7 +2,6 @@
 using TaskManager.Business.Abstraction.Data;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
-using TaskManager.Business.Features.DepartmentFeatures.Queries;
 
 namespace TaskManager.Business.Features.AssignmentFeatures.Queries;
 
@@ -22,7 +21,8 @@ public class GetAllAssignmentsQueryHandler : IRequestHandler<GetAllAssignmentsQu
         {
             var parameters = new CustomDynamicParameters();
 
-            var assignments = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllAssignmentsResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
+            var assignments = await _unitOfWork.ReadDbConnection
+                .QueryAsync<GetAllAssignmentsResponse>("GetAllAssignments", parameters, null, System.Data.CommandType.StoredProcedure);
 
             return assignments.ToList();
         }

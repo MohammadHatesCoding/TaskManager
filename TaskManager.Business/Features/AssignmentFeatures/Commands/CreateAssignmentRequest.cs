@@ -1,4 +1,6 @@
-﻿namespace TaskManager.Business.Features.AssignmentFeatures.Commands;
+﻿using TaskManager.Shared.Enums;
 
-public record CreateAssignmentRequest(string Title, string Describtion, DateTime Deadline, string Priority,
-    string Status, int ProjectId);
+namespace TaskManager.Business.Features.AssignmentFeatures.Commands;
+
+public record CreateAssignmentRequest(string Title, string Describtion, DateTime Deadline, AssignmentPriority Priority,
+    Status Status, int ProjectId);

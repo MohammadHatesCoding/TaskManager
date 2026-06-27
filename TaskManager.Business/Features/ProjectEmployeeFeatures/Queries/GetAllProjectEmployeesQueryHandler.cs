@@ -22,9 +22,8 @@ public class GetAllProjectEmployeesQueryHandler : IRequestHandler<GetAllProjectE
         {
             var parameters = new CustomDynamicParameters();
 
-            var projectEmployees = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllProjectEmployeesResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
-
-            //var projectEmployees = _mapper.Map<List<GetAllCompaniesResponse>>(models);
+            var projectEmployees = await _unitOfWork.ReadDbConnection
+                .QueryAsync<GetAllProjectEmployeesResponse>("GetAllProjectEmployees", parameters, null, System.Data.CommandType.StoredProcedure);
 
             return projectEmployees.ToList();
         }

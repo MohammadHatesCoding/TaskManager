@@ -1,3 +1,3 @@
 ﻿namespace TaskManager.Business.Features.ProjectFeatures.Queries;
 
-public record GetProjectDetailsRequest(int ProjectId);
+public record GetAllProjectsByCompanyIdRequest(int CompanyId);

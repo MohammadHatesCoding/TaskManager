@@ -61,15 +61,16 @@ public class RoleController : BaseController
     [HttpGet]
     [Route(nameof(GetAll))]
     [Authorize("SysAdmin")]
-    public async Task<List<GetAllRolesResponse>> GetAll(GetAllRolesQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllRolesResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllRolesResponse>>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllRolesResponse>>(new GetAllRolesQuery(new GetAllRolesRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();
 
         return result;
     }
+
     [HttpPost]
     [Route(nameof(GetDetails))]
     [Authorize("SysAdmin")]

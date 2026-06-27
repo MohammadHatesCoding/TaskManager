@@ -1,3 +1,3 @@
 ﻿namespace TaskManager.Business.Features.ProjectEmployeeFeatures.Commands;
 
-public record DeleteProjectEmployeeResponse(int Id);
+public record DeleteProjectEmployeeResponse(bool Success);

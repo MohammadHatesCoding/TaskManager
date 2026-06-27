@@ -18,13 +18,13 @@ public class DeleteRoleCommandHandler : IRequestHandler<DeleteRoleCommand, Delet
     {
         try
         {
-            var role = await _unitOfWork.RoleRepository.GetByIdAsync(request.command.Id);
+            var role = await _unitOfWork.RoleRepository.GetByIdAsync(request.command.RoleId);
 
             role.IsDeleted = true;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return new DeleteRoleResponse(Id: role.Id);
+            return new DeleteRoleResponse(Success: true);
         }
         catch (Exception ex) 
         {

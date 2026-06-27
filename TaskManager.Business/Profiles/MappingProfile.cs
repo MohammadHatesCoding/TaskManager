@@ -32,22 +32,20 @@ public class MappingProfile : Profile
     {
         #region AssignmentEmployee Mappers
 
-        CreateMap<CreateAssignmentEmployeeRequest, AssignmentEmployee>();
         CreateMap<CreateAssignmentEmployeeRequest, AssignmentEmployee>().ReverseMap();
-        CreateMap<UpdateAssignmentEmployeeRequest, AssignmentEmployee>();
-        CreateMap<UpdateAssignmentEmployeeRequest, AssignmentEmployee>().ReverseMap();
-        CreateMap<AssignmentEmployee, GetAllAssignmentEmployeesResponse>();
+        CreateMap<GetAllAssignmentEmployeesResponse, AssignmentEmployee>().ReverseMap();
+        
 
         #endregion
 
         #region Assignment Mappers
 
-        CreateMap<CreateAssignmentRequest, Assignment>();
         CreateMap<CreateAssignmentRequest, Assignment>().ReverseMap();
-        CreateMap<UpdateAssignmentRequest, Assignment>();
         CreateMap<UpdateAssignmentRequest, Assignment>().ReverseMap();
-        CreateMap<Assignment, GetAllAssignmentsResponse>();
-
+        CreateMap<GetAllAssignmentsResponse, Assignment>().ReverseMap();
+        CreateMap<GetAssignmentDetailsResponse, Assignment>()
+            .ForMember(x => x.AssignmentEmployees, opt => opt.Ignore())
+            .ReverseMap();
         #endregion
 
         #region Auth Mappers
@@ -99,29 +97,27 @@ public class MappingProfile : Profile
         #endregion
 
         #region ProjectEmployee Mappers
-
+        
         CreateMap<CreateProjectEmployeeRequest, ProjectEmployee>().ReverseMap();
-        CreateMap<UpdateProjectEmployeeRequest, ProjectEmployee>().ReverseMap();
-        CreateMap<GetAllProjectEmployeesResponse, ProjectEmployee>().ReverseMap();
+        
         #endregion
 
         #region Project Mappers
 
-        CreateMap<CreateProjectRequest, Project>();
         CreateMap<CreateProjectRequest, Project>().ReverseMap();
-        CreateMap<UpdateProjectRequest, Project>();
         CreateMap<UpdateProjectRequest, Project>().ReverseMap();
-        CreateMap<Project, GetAllProjectsResponse>();
-
+        CreateMap<GetAllProjectsResponse, Project>().ReverseMap();
+        CreateMap<GetProjectDetailsResponse, Project>()
+            .ForMember(x => x.ProjectEmployees, opt => opt.Ignore())
+            .ReverseMap();
         #endregion
 
         #region Role Mappers
 
-        CreateMap<CreateRoleRequest, Role>();
         CreateMap<CreateRoleRequest, Role>().ReverseMap();
-        CreateMap<UpdateRoleRequest, Role>();
         CreateMap<UpdateRoleRequest, Role>().ReverseMap();
-        CreateMap<Role, GetAllRolesResponse>();
+        CreateMap<GetAllRolesResponse, Role>().ReverseMap();
+        CreateMap<GetRoleDetailsResponse, Role>().ReverseMap();
 
         #endregion
 
@@ -140,9 +136,9 @@ public class MappingProfile : Profile
 
         #region UserRole Mappers
 
-        CreateMap<CreateUserRoleRequest, UserRole>();
         CreateMap<CreateUserRoleRequest, UserRole>().ReverseMap();
-        CreateMap<UserRole, GetAllUserRolesResponse>();
+        CreateMap<GetUserRolesByRoleIdResponse, UserRole>().ReverseMap();
+        CreateMap<GetUserRolesByUserIdResponse, UserRole>().ReverseMap();
 
         #endregion
     }

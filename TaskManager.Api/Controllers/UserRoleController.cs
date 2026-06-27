@@ -43,19 +43,6 @@ public class UserRoleController : BaseController
         return result;
     }
 
-    [HttpGet]
-    [Route(nameof(GetAll))]
-    [Authorize("SysAdmin")]
-    public async Task<List<GetAllUserRolesResponse>> GetAll(GetAllUserRolesQuery request, CancellationToken cancellationToken)
-    {
-        var result = await _dispatcher.Send<List<GetAllUserRolesResponse>>(request, cancellationToken);
-
-        if (result is null)
-            throw new Exception();
-
-        return result;
-    }
-
     [HttpPost]
     [Route(nameof(GetAllByRoleId))]
     [Authorize("SysAdmin")]

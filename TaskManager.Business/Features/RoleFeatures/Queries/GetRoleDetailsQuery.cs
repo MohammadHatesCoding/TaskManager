@@ -7,7 +7,7 @@ public class GetRoleDetailsQueryValidator : AbstractValidator<GetRoleDetailsQuer
 {
     public GetRoleDetailsQueryValidator()
     {
-        RuleFor(x => x.query.Id)
+        RuleFor(x => x.query.RoleId)
             .NotNull()
             .GreaterThan(0);
     }

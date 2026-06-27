@@ -1,3 +1,5 @@
-﻿namespace TaskManager.Business.Features.AssignmentFeatures.Queries;
+﻿using TaskManager.Shared.Enums;
 
-public record GetAllAssignmentsResponse(int Id, string Title, int? ManagerId);
+namespace TaskManager.Business.Features.AssignmentFeatures.Queries;
+
+public record GetAllAssignmentsResponse(int Id, string Title, DateTime Deadline, AssignmentPriority Priority, Status Status);

@@ -1,3 +1,5 @@
-﻿namespace TaskManager.Business.Features.RoleFeatures.Queries;
+﻿using TaskManager.Shared.Enums;
 
-public record GetRoleDetailsResponse(int Id, string Title, int? ManagerId, List<int> Employees);
+namespace TaskManager.Business.Features.RoleFeatures.Queries;
+
+public record GetRoleDetailsResponse(int Id, string Title, RoleType Type);

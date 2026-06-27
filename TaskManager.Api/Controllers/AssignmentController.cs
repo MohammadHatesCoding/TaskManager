@@ -32,7 +32,7 @@ public class AssignmentController : BaseController
 
     [HttpPost]
     [Route(nameof(Update))]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<UpdateAssignmentResponse> Update(UpdateAssignmentCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<UpdateAssignmentResponse>(request, cancellationToken);
@@ -45,7 +45,7 @@ public class AssignmentController : BaseController
 
     [HttpPost]
     [Route(nameof(Delete))]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<DeleteAssignmentResponse> Delete(DeleteAssignmentCommand request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<DeleteAssignmentResponse>(request, cancellationToken);
@@ -58,19 +58,21 @@ public class AssignmentController : BaseController
 
     [HttpGet]
     [Route(nameof(GetAll))]
-    [Authorize(Roles = "Admin")]
-    public async Task<List<GetAllAssignmentsResponse>> GetAll(GetAllAssignmentsQuery request, CancellationToken cancellationToken)
+    [Authorize(Roles = "SysAdmin")]
+    public async Task<List<GetAllAssignmentsResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllAssignmentsResponse>>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllAssignmentsResponse>>
+            (new GetAllAssignmentsQuery(new GetAllAssignmentsRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();
 
         return result;
     }
+
     [HttpPost]
     [Route(nameof(GetDetails))]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SysAdmin")]
     public async Task<GetAssignmentDetailsResponse> GetDetails(GetAssignmentDetailsQuery request, CancellationToken cancellationToken)
     {
         var result = await _dispatcher.Send<GetAssignmentDetailsResponse>(request, cancellationToken);

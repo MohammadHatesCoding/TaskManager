@@ -19,13 +19,13 @@ public class DeleteProjectEmployeeCommandHandler : IRequestHandler<DeleteProject
     {
         try
         {
-            var projectEmployee = await _unitOfWork.ProjectEmployeeRepository.GetByIdAsync(request.command.Id);
+            var projectEmployee = await _unitOfWork.ProjectEmployeeRepository.GetByIdAsync(request.command.ProjectEmployeeId);
 
             projectEmployee.IsDeleted = true;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return new DeleteProjectEmployeeResponse(Id: projectEmployee.Id);
+            return new DeleteProjectEmployeeResponse(Success: true);
         }
         catch (Exception ex) 
         {

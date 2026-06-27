@@ -19,7 +19,7 @@ public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand,
     {
         try
         {
-            var project = await _unitOfWork.ProjectRepository.GetByIdAsync(request.command.Id);
+            var project = await _unitOfWork.ProjectRepository.GetByIdAsync(request.command.ProjectId);
 
             project.IsDeleted = true;
 

@@ -31,19 +31,6 @@ public class ProjectEmployeeController : BaseController
     }
 
     [HttpPost]
-    [Route(nameof(Update))]
-    [Authorize("SysAdmin")]
-    public async Task<UpdateProjectEmployeeResponse> Update(UpdateProjectEmployeeCommand request, CancellationToken cancellationToken)
-    {
-        var result = await _dispatcher.Send<UpdateProjectEmployeeResponse>(request, cancellationToken);
-
-        if (result is null)
-            throw new Exception();
-
-        return result;
-    }
-
-    [HttpPost]
     [Route(nameof(Delete))]
     [Authorize("SysAdmin")]
     public async Task<DeleteProjectEmployeeResponse> Delete(DeleteProjectEmployeeCommand request, CancellationToken cancellationToken)
@@ -59,21 +46,10 @@ public class ProjectEmployeeController : BaseController
     [HttpGet]
     [Route(nameof(GetAll))]
     [Authorize("SysAdmin")]
-    public async Task<List<GetAllProjectEmployeesResponse>> GetAll(GetAllProjectEmployeesQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllProjectEmployeesResponse>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Send<List<GetAllProjectEmployeesResponse>>(request, cancellationToken);
-
-        if (result is null)
-            throw new Exception();
-
-        return result;
-    }
-    [HttpPost]
-    [Route(nameof(GetDetails))]
-    [Authorize("SysAdmin")]
-    public async Task<GetProjectEmployeeDetailsResponse> GetDetails(GetProjectEmployeeDetailsQuery request, CancellationToken cancellationToken)
-    {
-        var result = await _dispatcher.Send<GetProjectEmployeeDetailsResponse>(request, cancellationToken);
+        var result = await _dispatcher.Send<List<GetAllProjectEmployeesResponse>>(new GetAllProjectEmployeesQuery
+            (new GetAllProjectEmployeesRequest()), cancellationToken);
 
         if (result is null)
             throw new Exception();

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using TaskManager.Business.Abstraction.Data;
 using TaskManager.Business.Abstraction.Interfaces.Mediator;
 using TaskManager.Business.Abstraction.Interfaces.UnitOfWork;
+using TaskManager.Business.Features.AssignmentFeatures.Commands;
 
 namespace TaskManager.Business.Features.AssignmentFeatures.Queries;
 
@@ -21,6 +23,16 @@ public class GetAssignmentDetailsQueryHandler : IRequestHandler<GetAssignmentDet
             var model = await _unitOfWork.AssignmentRepository.GetByIdAsync(request.query.Id);
 
             var assignment = _mapper.Map<GetAssignmentDetailsResponse>(model);
+
+            var parameters = new CustomDynamicParameters();
+
+            parameters.Add("AssignmentId", request.query.Id);
+
+            var employees = await _unitOfWork.ReadDbConnection
+                .QueryAsync<GetAllAssignmentEmployeesByAssignmentId>
+                ("GetAllAssignmentEmployeesByAssignmentId", parameters, null, System.Data.CommandType.StoredProcedure);
+
+            assignment = assignment with { AssignmentEmployees = employees.ToList() };
 
             return assignment;
         }

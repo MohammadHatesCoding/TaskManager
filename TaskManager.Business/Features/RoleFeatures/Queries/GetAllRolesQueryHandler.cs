@@ -20,11 +20,9 @@ public class GetAllRolesQueryHandler : IRequestHandler<GetAllRolesQuery, List<Ge
     {
         try
         {
-            var parameters = new CustomDynamicParameters();
+            var models = await _unitOfWork.RoleRepository.GetAllAsync();
 
-            var roles = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllRolesResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
-
-            //var roles = _mapper.Map<List<GetAllCompaniesResponse>>(models);
+            var roles = _mapper.Map<List<GetAllRolesResponse>>(models);
 
             return roles.ToList();
         }

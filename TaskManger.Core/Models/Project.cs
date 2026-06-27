@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using TaskManager.Domain.Models.BaseModel;
+using TaskManager.Shared.Enums;
 
 namespace TaskManager.Domain.Models;
 
@@ -17,7 +19,7 @@ public class Project : BaseEntity
     public DateTime StartDate { get; set; }
     [DataType(DataType.DateTime)]
     public DateTime? EndDate { get; set; }
-    public string Status { get; set; }
+    public ProjectStatus Status { get; set; }
 
     #region Navigation Properties
     public Company Company { get; set; }
