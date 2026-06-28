@@ -15,11 +15,6 @@ public class CreateCommentCommandValidator : AbstractValidator<CreateCommentComm
             .NotNull()
             .NotEmpty()
             .GreaterThan(0);
-
-        RuleFor(x => x.command.EmployeeId)
-            .NotNull()
-            .NotEmpty()
-            .GreaterThan(0);
     }
 }
 

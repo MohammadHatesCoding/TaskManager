@@ -70,16 +70,4 @@ public class CommentController : BaseController
 
         return result;
     }
-    [HttpPost]
-    [Route(nameof(GetDetails))]
-    [Authorize(Roles = "SysAdmin")]
-    public async Task<GetCommentDetailsResponse> GetDetails(GetCommentDetailsQuery request, CancellationToken cancellationToken)
-    {
-        var result = await _dispatcher.Send<GetCommentDetailsResponse>(request, cancellationToken);
-
-        if (result is null)
-            throw new Exception();
-
-        return result;
-    }
 }

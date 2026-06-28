@@ -35,7 +35,11 @@ public class UserRepository : IUserRepository
 
     public async Task<User> Find(Expression<Func<User, bool>> predicate)
     {
-        return await _context.Set<User>().Include(x => x.UserRoles).ThenInclude(x => x.Role).FirstOrDefaultAsync(predicate);
+        return await _context.Set<User>().AsNoTracking()
+            .Include(x => x.UserRoles).ThenInclude(x => x.Role)
+            .Include(x => x.Companies)
+            .Include(x => x.Employees)
+            .FirstOrDefaultAsync(predicate);
     }
 
     public async Task<List<User>> GetAllAsync()

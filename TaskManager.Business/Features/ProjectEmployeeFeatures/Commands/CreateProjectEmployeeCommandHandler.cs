@@ -19,6 +19,13 @@ public class CreateProjectEmployeeCommandHandler : IRequestHandler<CreateProject
     {
         try
         {
+            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(request.command.EmployeeId);
+
+            var project = await _unitOfWork.ProjectRepository.GetByIdAsync(request.command.ProjectId);
+
+            if ((employee is null && project is null) && employee.CompanyId != project.CompanyId)
+                throw new Exception(message: "Employee is not in this company");
+
             var projectEmployee = _mapper.Map<ProjectEmployee>(request.command);
 
             await _unitOfWork.ProjectEmployeeRepository.CreateAsync(projectEmployee);

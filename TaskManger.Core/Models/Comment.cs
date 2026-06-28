@@ -12,7 +12,7 @@ public class Comment : BaseEntity
     public int AssignmentId { get; set; }
     [Required]
     public int EmployeeId { get; set; }
-    public int? RepliedToId { get; set; }
+    public int? RepliedToId { get; set; }//ایدی کامنتی که روش ریپلای شده
 
     #region Navigation Properties
     public Assignment Assignment { get; set; }

@@ -22,9 +22,7 @@ public class GetAllCommentsQueryHandler : IRequestHandler<GetAllCommentsQuery, L
         {
             var parameters = new CustomDynamicParameters();
 
-            var comments = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllCommentsResponse>("", parameters, null, System.Data.CommandType.StoredProcedure);
-
-            //var companies = _mapper.Map<List<GetAllCompaniesResponse>>(models);
+            var comments = await _unitOfWork.ReadDbConnection.QueryAsync<GetAllCommentsResponse>("GetAllComments", parameters, null, System.Data.CommandType.StoredProcedure);
 
             return comments.ToList();
         }

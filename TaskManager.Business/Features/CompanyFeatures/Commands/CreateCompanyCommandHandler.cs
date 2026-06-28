@@ -28,6 +28,19 @@ public class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyCommand,
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
+            var ownerEmployee = new Employee()
+            {
+                PersonnelCode = 1111111,
+                UserId = request.command.OwnerId,
+                Salary = 0,
+                CompanyId = company.Id,
+                IsOwner = true,
+            };
+
+            await _unitOfWork.EmployeeRepository.CreateAsync(ownerEmployee);
+
+            await _unitOfWork.CommitAsync(cancellationToken);
+
             return new CreateCompanyResponse(Id: company.Id);
         }
         catch (Exception ex) 

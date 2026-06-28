@@ -21,9 +21,9 @@ public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand,
         {
             var comment = await _unitOfWork.CommentRepository.GetByIdAsync(request.command.Id);
 
-            comment = _mapper.Map<Comment>(request.command);
+            _mapper.Map(request.command, comment);
 
-            await _unitOfWork.CommentRepository.UpdateAsync(comment);
+            comment.UpdateDate = DateTime.Now;
 
             await _unitOfWork.CommitAsync(cancellationToken);
 

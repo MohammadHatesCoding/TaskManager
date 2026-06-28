@@ -25,6 +25,10 @@ public class CreateEmployeeCommandValidator : AbstractValidator<CreateEmployeeCo
             .NotEmpty()
             .NotNull()
             .GreaterThan(0);
+
+        //RuleFor(x => x.command.ContractStartDate)
+        //    .NotNull()
+        //    .When(x => !x.command.IsOwner);
     }
 }
 
